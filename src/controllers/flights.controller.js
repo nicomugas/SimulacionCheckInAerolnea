@@ -1,11 +1,11 @@
 import { pool } from "../db.js";
 import {
     getboardingpass,
-    seatoccuped,
+    seats_free,
     totalseats,
     groupbypurchase,
     assingseat
-} from '../services/index.js'
+} from '../services/index.services.js'
 
 // Devuelve datos de vuelo con pasajeros. 
 export const flights = async (req, res) => {
@@ -20,13 +20,13 @@ export const flights = async (req, res) => {
         const boardingpass = await getboardingpass(idflight)
 
 
-        const seats = await totalseats() //obtengo la totalidad de  los asientos.
+        const seats = await totalseats(idflight) //obtengo la totalidad de  los asientos de un vuelo .
 
-        const seatsoccupped = await seatoccuped(boardingpass, seats) //obtengo lista de asientos ocupados y libres
+        const seatsfree = await seats_free(boardingpass, seats, idflight) //obtengo lista de asientos  libres
 
         const boardingpassGroup = await groupbypurchase(boardingpass) // agrupo por compra
 
-        const assingseats = await assingseat(boardingpassGroup, seatsoccupped, idflight) //asigno los asientos
+        const assingseats = await assingseat(boardingpassGroup, seatsfree, idflight) //asigno los asientos
 
 
 
