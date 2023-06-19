@@ -7,7 +7,7 @@ import {
     assingseat
 } from '../services/index.services.js'
 
-// Devuelve datos de vuelo con pasajeros. 
+
 export const flights = async (req, res) => {
     try {
         const idflight = Number(req.params.id)
@@ -19,28 +19,23 @@ export const flights = async (req, res) => {
 
         const boardingpass = await getboardingpass(idflight)
 
+        const seats = await totalseats(idflight) 
 
-        const seats = await totalseats(idflight) //obtengo la totalidad de  los asientos de un vuelo .
+        const seatsfree = await seats_free(boardingpass, seats, idflight) 
 
-        const seatsfree = await seats_free(boardingpass, seats, idflight) //obtengo lista de asientos  libres
+        const boardingpassGroup = await groupbypurchase(boardingpass) 
 
-        const boardingpassGroup = await groupbypurchase(boardingpass) // agrupo por compra
-
-        const assingseats = await assingseat(boardingpassGroup, seatsfree, idflight) //asigno los asientos
-
-
-
+        const assingseats = await assingseat(boardingpassGroup, seatsfree, idflight) 
 
         const result = {
             code: 200,
             data: rows[0],
-            passengers: boardingpass
+            passengers: assingseats
         }
-        res.json(assingseats)
-        //res.json("hola")
+        res.json(result)    
 
     } catch (error) {
         return res.status(500).json({ error: 'Something was wrong', error })
-        //return error
+        
     }
 }
