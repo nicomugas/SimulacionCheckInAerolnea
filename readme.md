@@ -56,25 +56,23 @@ Respuesta exitosa:
 
 
 
-
-
-
-
-
 ## Environment Variables
-
+```
 PORT
 USER
 PASS
 DATABASE
 HOST
 
+```
+
 
 ## Installation Local
 
 Clonar proyecto
-
+```
 https://github.com/nicomugas/SimulacionCheckInAerolnea.git
+```
 
 Ir la directorio del proyecto
 ```
