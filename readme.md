@@ -81,29 +81,33 @@ $ cd check-in
 Instalar dependencias
 
 ```
-  $ npm install 
-  
+  $ npm install   
 ```
 Ejecutar
 
 ```
-  $ npm run dev
-  
+  $ npm run dev  
 ```
 Navegación Local
+```
 https://localhost:PORT/flights/:id/passengers
+```
 
-Ej: https://localhost:3000/flights/2/passengers
-
+Ej: 
+```
+https://localhost:3000/flights/2/passengers
+```
 ## Deploy
 
 Deploy en Render.com
 
+```
 https://simulacioncheckinaerolinea.onrender.com/flights/:id/passengers
-
+```
 Ejemplo:
+```
 https://simulacioncheckinaerolinea.onrender.com/flights/2/passengers
-
+```
 
 # Tecnologías 
 
